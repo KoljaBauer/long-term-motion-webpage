@@ -106,6 +106,51 @@
     <i class="fas fa-chevron-up"></i>
   </button>
 
+  <div class="more-works-container">
+    <button
+      class="more-works-btn"
+      type="button"
+      onclick="toggleMoreWorks()"
+      aria-expanded="false"
+      aria-controls="moreWorksDropdown"
+      aria-label="Open more research menu">
+      <span>More Research</span>
+      <i class="fas fa-chevron-down dropdown-arrow" aria-hidden="true"></i>
+    </button>
+    <div class="more-works-dropdown" id="moreWorksDropdown" role="menu" aria-label="More research">
+      <div class="dropdown-header">
+        <h4>More Research</h4>
+        <button class="close-btn" type="button" onclick="toggleMoreWorks()" aria-label="Close more research menu">
+          <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="works-list">
+        <div class="works-group">
+          <p class="works-group-label">Related</p>
+          <a class="work-item" href="https://compvis.github.io/flow-poke-transformer/" target="_blank" rel="noopener noreferrer" role="menuitem">
+            <div class="work-info">
+              <h5>What If</h5>
+              <p>Understanding motion through sparse interactions with the Flow Poke Transformer.</p>
+              <span class="work-venue">ICCV 2025</span>
+            </div>
+            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+          </a>
+        </div>
+        <div class="works-group">
+          <p class="works-group-label">From the Authors</p>
+          <a class="work-item" href="https://compvis.github.io/cleandift/" target="_blank" rel="noopener noreferrer" role="menuitem">
+            <div class="work-info">
+              <h5>CleanDIFT</h5>
+              <p>Diffusion features without noise for clean, timestep-independent representations.</p>
+              <span class="work-venue">CVPR 2025 (Oral)</span>
+            </div>
+            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <main id="main-content">
   <section class="hero">
     <div class="hero-body">
@@ -199,93 +244,10 @@
   </section>
 
 
-  <section class="section hero is-light">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <h2 class="title is-3">Abstract</h2>
-          <div class="content has-text-justified">
-            <p>
-              Understanding and predicting motion is a fundamental component of visual intelligence. Although modern video models exhibit strong comprehension of scene dynamics, exploring multiple possible futures through full video synthesis remains prohibitively inefficient. We model scene dynamics orders of magnitude more efficiently by directly operating on a <strong>long-term motion embedding</strong> that is learned from large-scale trajectories obtained from tracker models. This enables efficient generation of long, realistic motions that fulfill goals specified via text prompts or spatial pokes. To achieve this, we first learn a highly compressed motion embedding with a temporal compression factor of <strong>64x</strong>. In this space, we train a conditional flow-matching model to generate motion latents conditioned on task descriptions. The resulting motion distributions outperform those of both state-of-the-art video models and specialized task-specific approaches.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <section class="hero is-small" id="results">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <h2 class="title is-3 has-text-centered">Learning a Dense Motion Space</h2>
-        <img src="static/images/motion-embedding/stage1.png" alt="Overview showing dense motion space learning from sparse tracker trajectories." loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-          Sparse tracker trajectories and the start frame are encoded into a latent motion grid that supports dense reconstruction at arbitrary spatial query points.
-        </h2>
-      </div>
-    </div>
-  </section>
-
   <section class="hero is-small is-light">
     <div class="hero-body">
-      <div class="container is-max-desktop">
+      <div class="container">
         <h2 class="title is-3 has-text-centered">Goal-Conditioned Motion Generation</h2>
-        <img src="static/images/motion-embedding/stage2.png" alt="Architecture showing conditional flow matching in the learned motion space." loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-          A conditional flow-matching model generates motion latents from scene context plus text or poke conditioning directly in the learned motion space.
-        </h2>
-      </div>
-    </div>
-  </section>
-
-  <section class="hero is-small">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <h2 class="title is-3 has-text-centered">Compression Improves Efficiency and Semantics</h2>
-        <img src="static/images/motion-embedding/compression.png" alt="Compression ablation showing quality, reconstruction, and semantic structure across temporal compression factors." loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-          Stronger temporal compression improves motion generation quality and throughput while only mildly reducing reconstruction fidelity, and leads to a more semantic motion space.
-        </h2>
-      </div>
-    </div>
-  </section>
-
-
-  <section class="hero is-small is-light">
-    <div class="hero-body">
-      <div class="container">
-        <h2 class="title is-3 has-text-centered">Multiple Plausible Futures</h2>
-        <div class="columns is-centered has-text-centered">
-          <div class="column is-one-quarter">
-            <img src="static/images/motion-embedding/eagle-wingflap.png" alt="Eagle motion hypothesis showing wing flap." loading="lazy"/>
-            <p class="subtitle has-text-centered">Wing flap motion hypothesis.</p>
-          </div>
-          <div class="column is-one-quarter">
-            <img src="static/images/motion-embedding/eagle-gliding.png" alt="Eagle motion hypothesis showing glide." loading="lazy"/>
-            <p class="subtitle has-text-centered">Gliding motion hypothesis.</p>
-          </div>
-          <div class="column is-one-quarter">
-            <img src="static/images/motion-embedding/eagle-left.png" alt="Eagle motion hypothesis turning left." loading="lazy"/>
-            <p class="subtitle has-text-centered">Left-turn motion hypothesis.</p>
-          </div>
-          <div class="column is-one-quarter">
-            <img src="static/images/motion-embedding/eagle-rotation.png" alt="Eagle motion hypothesis with rotation." loading="lazy"/>
-            <p class="subtitle has-text-centered">Rotation motion hypothesis.</p>
-          </div>
-        </div>
-        <p class="subtitle has-text-centered">
-          From a single start frame, the model samples multiple coherent futures for the same scene, illustrating the diversity of the learned motion distribution.
-        </p>
-      </div>
-    </div>
-  </section>
-
-
-  <section class="hero is-small">
-    <div class="hero-body">
-      <div class="container">
-        <h2 class="title is-3 has-text-centered">Motion Reasoning Examples</h2>
         <p class="subtitle has-text-centered">
           Conditioned on start and end points (<em>spatial pokes</em>), our model finds plausible motions that satisfy the conditioning.
         </p>
@@ -309,46 +271,88 @@
             </p>
           </div>
         </div>
+        <p class="subtitle has-text-centered">
+          From a single start frame, our model generates <strong>multiple</strong> coherent futures, illustrating the diversity of the learned motion distribution.
+        </p>
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-one-quarter">
+            <img src="static/images/motion-embedding/eagle-wingflap.png" alt="Eagle motion hypothesis showing wing flap." loading="lazy"/>
+          </div>
+          <div class="column is-one-quarter">
+            <img src="static/images/motion-embedding/eagle-gliding.png" alt="Eagle motion hypothesis showing glide." loading="lazy"/>
+          </div>
+          <div class="column is-one-quarter">
+            <img src="static/images/motion-embedding/eagle-left.png" alt="Eagle motion hypothesis turning left." loading="lazy"/>
+          </div>
+          <div class="column is-one-quarter">
+            <img src="static/images/motion-embedding/eagle-rotation.png" alt="Eagle motion hypothesis with rotation." loading="lazy"/>
+          </div>
+        </div>
+        <h3 class="title is-4 has-text-centered" style="margin-top: 3rem;">Comparison against Motion Predictors</h3>
+        <p class="subtitle has-text-centered">
+          On open-domain videos, we compare against prior motion predictors under different poke-conditioning sparsities, from a single poke to dense guidance. Our latent motion model achieves the best generation quality and conditioning adherence across the board while being substantially faster than both flow-based and trajectory-based baselines.
+        </p>
+        <div class="content">
+          <img src="static/images/tab_1_screenshot.png" alt="Comparison against motion predictors across 1-poke, 2-poke, 4-poke, 8-poke, and dense conditioning regimes." loading="lazy" style="width: 100%; display: block; margin: 0 auto 2rem;"/>
+        </div>
+        <h3 class="title is-4 has-text-centered">Comparison against SOTA video models</h3>
+        <p class="subtitle has-text-centered">
+          We compare against Wan and Veo 3 in a goal-conditioned setup where video baselines receive the start and end frame, while our model receives the start frame and a poke-based motion goal. Since video models do not expose explicit motion trajectories, we track their generated videos with CoTracker and evaluate the recovered motion using the same metrics. In both sample-matched and time-matched settings, our kinematics-first model outperforms the video baselines, with the gap widening substantially when wall-clock sampling time is matched.
+        </p>
+        <div class="columns is-variable is-6 is-vcentered">
+          <div class="column">
+            <img src="static/images/tab_3_screenshot.png" alt="Sample-matched comparison against state-of-the-art video models." loading="lazy" style="width: 100%; display: block; margin: 0 auto;"/>
+          </div>
+          <div class="column">
+            <img src="static/images/tab_4_screenshot.png" alt="Time-matched comparison against state-of-the-art video models." loading="lazy" style="width: 100%; display: block; margin: 0 auto;"/>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
 
-  <section class="section hero is-light">
-    <div class="container is-max-widescreen">
-      <div class="columns is-centered">
-        <div class="column is-full">
-          <h2 class="title is-3 has-text-centered">Action Prediction on LIBERO</h2>
-          <p class="subtitle has-text-centered">
-            On LIBERO, we evaluate whether generated task-conditional motion embeddings are useful for downstream control by training a small inverse-dynamics policy head to predict 7D robot actions, executing those actions in simulation, and measuring task success. Following the ATM and Tra-MoE evaluation protocols, our method outperforms both baselines across tasks, indicating stronger task-conditioned planning and scene understanding.
-          </p>
-          <div class="content">
-            <img src="static/images/motion-embedding/action_pred_results.png" alt="Action prediction results table on LIBERO under the ATM and Tra-MoE evaluation protocols." loading="lazy" style="width: 60%; display: block; margin: 0 auto 1.5rem;"/>
-          </div>
-          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem;">
-            <div style="width: 80%; margin: 0 auto; display: flex; flex-direction: column;">
-              <p class="has-text-centered" style="font-style: italic; font-size: 0.95rem; line-height: 1.3; min-height: 3.9em; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center;">Put both the cream cheese box and the butter in the basket</p>
-              <video autoplay muted loop playsinline preload="metadata" controls style="width: 100%;">
-                <source src="static/videos/env_1_rollout_4.mp4" type="video/mp4">
-              </video>
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container is-max-widescreen">
+        <div class="columns is-centered">
+          <div class="column is-full">
+            <h2 class="title is-3 has-text-centered">Action Prediction on LIBERO</h2>
+            <p class="subtitle has-text-centered">
+              Given a task description and a start frame, our model predicts how objects in the scene should move to solve the task.
+              We train a small policy head to map our generated motions to 7D robot actions and rollout the policy:
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem;">
+              <div style="width: 80%; margin: 0 auto; display: flex; flex-direction: column;">
+                <p class="has-text-centered" style="font-style: italic; font-size: 0.95rem; line-height: 1.3; min-height: 3.9em; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center;">Put both the cream cheese box and the butter in the basket</p>
+                <video autoplay muted loop playsinline preload="metadata" controls style="width: 100%;">
+                  <source src="static/videos/env_1_rollout_4.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div style="width: 80%; margin: 0 auto; display: flex; flex-direction: column;">
+                <p class="has-text-centered" style="font-style: italic; font-size: 0.95rem; line-height: 1.3; min-height: 3.9em; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center;">Turn on the stove and put the moka pot on it</p>
+                <video autoplay muted loop playsinline preload="metadata" controls style="width: 100%;">
+                  <source src="static/videos/env_2_rollout_3.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div style="width: 80%; margin: 0 auto; display: flex; flex-direction: column;">
+                <p class="has-text-centered" style="font-style: italic; font-size: 0.95rem; line-height: 1.3; min-height: 3.9em; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center;">Put the black bowl in the bottom drawer of the cabinet and close it</p>
+                <video autoplay muted loop playsinline preload="metadata" controls style="width: 100%;">
+                  <source src="static/videos/env_3_rollout_3.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div style="width: 80%; margin: 0 auto; display: flex; flex-direction: column;">
+                <p class="has-text-centered" style="font-style: italic; font-size: 0.95rem; line-height: 1.3; min-height: 3.9em; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center;">Put the yellow and white mug in the microwave and close it</p>
+                <video autoplay muted loop playsinline preload="metadata" controls style="width: 100%;">
+                  <source src="static/videos/env_9_rollout_4.mp4" type="video/mp4">
+                </video>
+              </div>
             </div>
-            <div style="width: 80%; margin: 0 auto; display: flex; flex-direction: column;">
-              <p class="has-text-centered" style="font-style: italic; font-size: 0.95rem; line-height: 1.3; min-height: 3.9em; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center;">Turn on the stove and put the moka pot on it</p>
-              <video autoplay muted loop playsinline preload="metadata" controls style="width: 100%;">
-                <source src="static/videos/env_2_rollout_3.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div style="width: 80%; margin: 0 auto; display: flex; flex-direction: column;">
-              <p class="has-text-centered" style="font-style: italic; font-size: 0.95rem; line-height: 1.3; min-height: 3.9em; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center;">Put the black bowl in the bottom drawer of the cabinet and close it</p>
-              <video autoplay muted loop playsinline preload="metadata" controls style="width: 100%;">
-                <source src="static/videos/env_3_rollout_3.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div style="width: 80%; margin: 0 auto; display: flex; flex-direction: column;">
-              <p class="has-text-centered" style="font-style: italic; font-size: 0.95rem; line-height: 1.3; min-height: 3.9em; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center;">Put the yellow and white mug in the microwave and close it</p>
-              <video autoplay muted loop playsinline preload="metadata" controls style="width: 100%;">
-                <source src="static/videos/env_9_rollout_4.mp4" type="video/mp4">
-              </video>
+            <p class="subtitle has-text-centered" style="margin-top: 2rem;">
+              Following the ATM and Tra-MoE evaluation protocols, our method outperforms both baselines across tasks, indicating stronger task-conditioned planning and scene understanding:
+            </p>
+            <div class="content" style="margin-top: 2rem;">
+              <img src="static/images/motion-embedding/action_pred_results.png" alt="Action prediction results table on LIBERO under the ATM and Tra-MoE evaluation protocols." loading="lazy" style="width: 60%; display: block; margin: 0 auto 1.5rem;"/>
             </div>
           </div>
         </div>
@@ -357,29 +361,106 @@
   </section>
 
 
-  <section class="section">
-    <div class="container is-max-widescreen">
-      <div class="columns is-centered">
+  <!--
+  <section class="section hero is-light" id="abstract">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
-          <h2 class="title is-3 has-text-centered">Motion Generation Performance</h2>
-          <h3 class="title is-4 has-text-centered">Comparison against Motion Predictors</h3>
-          <p class="subtitle has-text-centered">
-            On open-domain videos, we compare against prior motion predictors under different poke-conditioning sparsities, from a single poke to dense guidance. Our latent motion model achieves the best generation quality and conditioning adherence across the board while being substantially faster than both flow-based and trajectory-based baselines.
-          </p>
-          <div class="content">
-            <img src="static/images/tab_1_screenshot.png" alt="Comparison against motion predictors across 1-poke, 2-poke, 4-poke, 8-poke, and dense conditioning regimes." loading="lazy" style="width: 100%; display: block; margin: 0 auto 2rem;"/>
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Understanding and predicting motion is a fundamental component of visual intelligence. Although modern video models exhibit strong comprehension of scene dynamics, exploring multiple possible futures through full video synthesis remains prohibitively inefficient. We model scene dynamics orders of magnitude more efficiently by directly operating on a <strong>long-term motion embedding</strong> that is learned from large-scale trajectories obtained from tracker models. This enables efficient generation of long, realistic motions that fulfill goals specified via text prompts or spatial pokes. To achieve this, we first learn a highly compressed motion embedding with a temporal compression factor of <strong>64x</strong>. In this space, we train a conditional flow-matching model to generate motion latents conditioned on task descriptions. The resulting motion distributions outperform those of both state-of-the-art video models and specialized task-specific approaches.
+            </p>
           </div>
-          <h3 class="title is-4 has-text-centered">Comparison against SOTA video models</h3>
-          <p class="subtitle has-text-centered">
-            We compare against Wan and Veo 3 in a goal-conditioned setup where video baselines receive the start and end frame, while our model receives the start frame and a poke-based motion goal. Since video models do not expose explicit motion trajectories, we track their generated videos with CoTracker and evaluate the recovered motion using the same metrics. In both sample-matched and time-matched settings, our kinematics-first model outperforms the video baselines, with the gap widening substantially when wall-clock sampling time is matched.
-          </p>
-          <div class="columns is-variable is-6 is-vcentered">
-            <div class="column">
-              <img src="static/images/tab_3_screenshot.png" alt="Sample-matched comparison against state-of-the-art video models." loading="lazy" style="width: 100%; display: block; margin: 0 auto;"/>
-            </div>
-            <div class="column">
-              <img src="static/images/tab_4_screenshot.png" alt="Time-matched comparison against state-of-the-art video models." loading="lazy" style="width: 100%; display: block; margin: 0 auto;"/>
-            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  -->
+
+
+  <section class="hero is-small is-light" id="results">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">How It Works</h2>
+        <p class="subtitle has-text-centered">
+          We learn a dense motion space by encoding sparse tracker trajectories and the start frame into a compact latent motion grid that supports dense reconstruction at arbitrary spatial query points.
+        </p>
+        <img src="static/images/motion-embedding/stage1.png" alt="Overview showing dense motion space learning from sparse tracker trajectories." loading="lazy"/>
+        <p class="subtitle has-text-centered" style="margin-top: 2rem;">
+          We then generate goal-conditioned motion latents directly in this learned motion space from scene context plus text or spatial-poke conditioning.
+        </p>
+        <img src="static/images/motion-embedding/stage2.png" alt="Architecture showing conditional flow matching in the learned motion space." loading="lazy"/>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">Compression Improves Efficiency and Semantics</h2>
+        <img src="static/images/motion-embedding/compression.png" alt="Compression ablation showing quality, reconstruction, and semantic structure across temporal compression factors." loading="lazy"/>
+        <h2 class="subtitle has-text-centered">
+          Stronger temporal compression improves motion generation quality and throughput while only mildly reducing reconstruction fidelity, and leads to a more semantic motion space.
+        </h2>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="hero is-small is-light">
+    <div class="hero-body">
+      <div class="container">
+        <h2 class="title is-3 has-text-centered">Additional Results</h2>
+        <p class="subtitle has-text-centered">
+          Conditioned on the start and end position of a specific point, our model generates a distribution of trajectories, yielding a distribution of positions. We visualize the original video on the left alongside the distribution of positions generated by our model on the right.
+        </p>
+        <div class="columns is-centered has-text-centered is-multiline is-variable is-4">
+          <div class="column is-half">
+            <video autoplay muted loop playsinline preload="metadata" controls style="width: 100%;">
+              <source src="static/videos/car_vid.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="column is-half">
+            <video autoplay muted loop playsinline preload="metadata" controls style="width: 100%;">
+              <source src="static/videos/city_vid.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="column is-half">
+            <video autoplay muted loop playsinline preload="metadata" controls style="width: 100%;">
+              <source src="static/videos/horse_vid.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="column is-half">
+            <video autoplay muted loop playsinline preload="metadata" controls style="width: 100%;">
+              <source src="static/videos/swan_vid.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <p class="subtitle has-text-centered" style="margin-top: 3rem;">
+          Per column, we show multiple generated motions conditioned on spatial pokes shown in the top row.
+        </p>
+        <div class="additional-qual-grid">
+          <div class="additional-qual-column">
+            <img src="static/images/additional-results/figure-h/horse/prompt.png" alt="Horse poke prompt from Figure H." loading="lazy" class="additional-qual-image"/>
+            <img src="static/images/additional-results/figure-h/horse/i1.png" alt="First horse qualitative sample from Figure H." loading="lazy" class="additional-qual-image"/>
+            <img src="static/images/additional-results/figure-h/horse/i2.png" alt="Second horse qualitative sample from Figure H." loading="lazy" class="additional-qual-image"/>
+            <img src="static/images/additional-results/figure-h/horse/i3.png" alt="Third horse qualitative sample from Figure H." loading="lazy" class="additional-qual-image"/>
+            <img src="static/images/additional-results/figure-h/horse/i4.png" alt="Fourth horse qualitative sample from Figure H." loading="lazy" class="additional-qual-image is-last"/>
+          </div>
+          <div class="additional-qual-column">
+            <img src="static/images/additional-results/figure-h/robot1/prompt.png" alt="Robot poke prompt from Figure H." loading="lazy" class="additional-qual-image"/>
+            <img src="static/images/additional-results/figure-h/robot1/i1.png" alt="First robot qualitative sample from Figure H." loading="lazy" class="additional-qual-image"/>
+            <img src="static/images/additional-results/figure-h/robot1/i2.png" alt="Second robot qualitative sample from Figure H." loading="lazy" class="additional-qual-image"/>
+            <img src="static/images/additional-results/figure-h/robot1/i3.png" alt="Third robot qualitative sample from Figure H." loading="lazy" class="additional-qual-image"/>
+            <img src="static/images/additional-results/figure-h/robot1/i4.png" alt="Fourth robot qualitative sample from Figure H." loading="lazy" class="additional-qual-image is-last"/>
+          </div>
+          <div class="additional-qual-column">
+            <img src="static/images/additional-results/figure-h/camel/prompt.png" alt="Camel poke prompt from Figure H." loading="lazy" class="additional-qual-image"/>
+            <img src="static/images/additional-results/figure-h/camel/i1.png" alt="First camel qualitative sample from Figure H." loading="lazy" class="additional-qual-image"/>
+            <img src="static/images/additional-results/figure-h/camel/i2.png" alt="Second camel qualitative sample from Figure H." loading="lazy" class="additional-qual-image"/>
+            <img src="static/images/additional-results/figure-h/camel/i3.png" alt="Third camel qualitative sample from Figure H." loading="lazy" class="additional-qual-image"/>
+            <img src="static/images/additional-results/figure-h/camel/i4.png" alt="Fourth camel qualitative sample from Figure H." loading="lazy" class="additional-qual-image is-last"/>
           </div>
         </div>
       </div>

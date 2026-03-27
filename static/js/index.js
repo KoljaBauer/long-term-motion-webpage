@@ -1,16 +1,22 @@
 window.HELP_IMPROVE_VIDEOJS = false;
 
-// More Works Dropdown Functionality
+// More Research Dropdown Functionality
 function toggleMoreWorks() {
     const dropdown = document.getElementById('moreWorksDropdown');
     const button = document.querySelector('.more-works-btn');
-    
+
+    if (!dropdown || !button) {
+        return;
+    }
+
     if (dropdown.classList.contains('show')) {
         dropdown.classList.remove('show');
         button.classList.remove('active');
+        button.setAttribute('aria-expanded', 'false');
     } else {
         dropdown.classList.add('show');
         button.classList.add('active');
+        button.setAttribute('aria-expanded', 'true');
     }
 }
 
@@ -19,10 +25,15 @@ document.addEventListener('click', function(event) {
     const container = document.querySelector('.more-works-container');
     const dropdown = document.getElementById('moreWorksDropdown');
     const button = document.querySelector('.more-works-btn');
-    
+
+    if (!container || !dropdown || !button) {
+        return;
+    }
+
     if (container && !container.contains(event.target)) {
         dropdown.classList.remove('show');
         button.classList.remove('active');
+        button.setAttribute('aria-expanded', 'false');
     }
 });
 
@@ -31,8 +42,12 @@ document.addEventListener('keydown', function(event) {
     if (event.key === 'Escape') {
         const dropdown = document.getElementById('moreWorksDropdown');
         const button = document.querySelector('.more-works-btn');
+        if (!dropdown || !button) {
+            return;
+        }
         dropdown.classList.remove('show');
         button.classList.remove('active');
+        button.setAttribute('aria-expanded', 'false');
     }
 });
 
