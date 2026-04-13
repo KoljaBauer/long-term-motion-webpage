@@ -127,6 +127,14 @@
       <div class="works-list">
         <div class="works-group">
           <p class="works-group-label">Related</p>
+          <a class="work-item" href="https://compvis.github.io/myriad/" target="_blank" rel="noopener noreferrer" role="menuitem">
+            <div class="work-info">
+              <h5>MYRIAD</h5>
+              <p>Envisioning the Future, One Step at a Time.</p>
+              <span class="work-venue">CVPR 2026</span>
+            </div>
+            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+          </a>
           <a class="work-item" href="https://compvis.github.io/flow-poke-transformer/" target="_blank" rel="noopener noreferrer" role="menuitem">
             <div class="work-info">
               <h5>What If</h5>
@@ -157,6 +165,7 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
+            <div class="publication-venue">CVPR 2026</div>
             <h1 class="title is-1 publication-title">Learning Long-term Motion Embeddings for Efficient Kinematics Generation</h1>
             <div class="is-size-5 publication-authors">
               <span class="author-block"><a href="https://nickstracke.dev" target="_blank">Nick Stracke</a><sup>*,1,2</sup>,</span>
@@ -186,7 +195,7 @@
               </span>
 
               <span class="link-block">
-                <a href="https://github.com/your-org/your-repo" target="_blank"
+                <a href="https://compvis.github.io/long-term-motion" target="_blank"
                 class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                     <i class="fab fa-github"></i>
@@ -206,7 +215,7 @@
               </span>
 
               <span class="link-block">
-                <a href="https://example.com/weights" target="_blank"
+                <a href="https://huggingface.co/CompVis/ZipMo" target="_blank"
                 class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                     <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="" style="height: 1em; width: 1em;">
@@ -249,30 +258,30 @@
       <div class="container">
         <h2 class="title is-3 has-text-centered">Goal-Conditioned Motion Generation</h2>
         <p class="subtitle has-text-centered">
-          Conditioned on start and end points (<em>spatial pokes</em>), our model finds plausible motions that satisfy the conditioning.
+          Conditioned on start and end points (<em>spatial pokes</em>), our model finds plausible motions that satisfy the conditioning:
         </p>
-        <div class="columns is-centered has-text-centered">
-          <div class="column is-one-third">
-            <img src="static/images/motion-embedding/reasoning-path.png" alt="Path-finding motion reasoning example." loading="lazy"/>
+        <div class="columns is-centered has-text-centered goal-motion-grid">
+          <div class="column is-one-third goal-motion-column">
+            <img src="static/images/motion-embedding/reasoning-path.png" alt="Path-finding motion reasoning example." loading="lazy" class="goal-motion-image"/>
             <p class="subtitle has-text-centered">
               <strong>Path finding:</strong> sparse pokes induce globally coherent paths through the scene.
             </p>
           </div>
-          <div class="column is-one-third">
-            <img src="static/images/motion-embedding/reasoning-rotation.png" alt="Rotational motion reasoning example." loading="lazy"/>
+          <div class="column is-one-third goal-motion-column">
+            <img src="static/images/motion-embedding/reasoning-rotation.png" alt="Rotational motion reasoning example." loading="lazy" class="goal-motion-image"/>
             <p class="subtitle has-text-centered">
               <strong>Rotational motion:</strong> the model captures circular and spinning dynamics.
             </p>
           </div>
-          <div class="column is-one-third">
-            <img src="static/images/motion-embedding/reasoning-joints.png" alt="Joint-aware motion reasoning example." loading="lazy"/>
+          <div class="column is-one-third goal-motion-column">
+            <img src="static/images/motion-embedding/reasoning-joints.png" alt="Joint-aware motion reasoning example." loading="lazy" class="goal-motion-image"/>
             <p class="subtitle has-text-centered">
               <strong>Understanding joints:</strong> articulated structures move coherently instead of as independent points.
             </p>
           </div>
         </div>
         <p class="subtitle has-text-centered">
-          From a single start frame, our model generates <strong>multiple</strong> coherent futures, illustrating the diversity of the learned motion distribution.
+          From a single start frame, our model generates <strong>multiple</strong> coherent futures, illustrating the diversity of the learned motion distribution:
         </p>
         <div class="columns is-centered has-text-centered">
           <div class="column is-one-quarter">
@@ -390,7 +399,7 @@
         <p class="subtitle has-text-centered" style="margin-top: 2rem;">
           We then generate goal-conditioned motion latents directly in this learned motion space from scene context plus text or spatial-poke conditioning.
         </p>
-        <img src="static/images/motion-embedding/stage2.png" alt="Architecture showing conditional flow matching in the learned motion space." loading="lazy"/>
+        <img src="static/images/motion-embedding/ZipMo.png" alt="Architecture showing conditional flow matching in the learned motion space." loading="lazy"/>
       </div>
     </div>
   </section>

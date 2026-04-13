@@ -166,6 +166,7 @@ body {
     padding: 0.5rem 1rem;
     border-radius: var(--border-radius);
     margin-top: 1rem;
+    margin-bottom: 1rem;
     display: inline-block;
 }
 
@@ -258,6 +259,55 @@ body {
 .publication-body img:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
+}
+
+.goal-motion-grid {
+  --goal-motion-height: 220px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  margin-bottom: 1.25rem;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.goal-motion-grid .goal-motion-column.column {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: center;
+  width: min(100%, calc(var(--goal-motion-height) * var(--goal-motion-ratio)));
+  max-width: calc(var(--goal-motion-height) * var(--goal-motion-ratio));
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.goal-motion-grid .goal-motion-column:nth-child(1) {
+  --goal-motion-ratio: 1.8515625;
+}
+
+.goal-motion-grid .goal-motion-column:nth-child(2) {
+  --goal-motion-ratio: 1.8046875;
+}
+
+.goal-motion-grid .goal-motion-column:nth-child(3) {
+  --goal-motion-ratio: 1.60546875;
+}
+
+.goal-motion-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  margin: 0 auto 1rem;
+}
+
+.goal-motion-column .subtitle {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
 }
 
 .results-carousel {
@@ -705,6 +755,10 @@ code {
   .additional-qual-column {
     flex-basis: 31%;
   }
+
+  .goal-motion-grid {
+    --goal-motion-height: 200px;
+  }
   
   .teaser .hero-body {
     padding: 0.75rem 1rem 1.375rem;
@@ -758,6 +812,11 @@ code {
 
   .additional-qual-column {
     flex-basis: 100%;
+  }
+
+  .goal-motion-grid {
+    --goal-motion-height: 185px;
+    gap: 1rem;
   }
   
   .link-block {
